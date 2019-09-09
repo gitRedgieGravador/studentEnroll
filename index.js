@@ -35,7 +35,7 @@ http.createServer(function (request, response) {
 
     request.on('data', function (request) {
         store = JSON.parse(request);
-        file = store.subject.replace(" ","-").toLowerCase();
+        file = store.subject.split(" ").join("-").toLowerCase();
         fs.appendFile(file + '.csv', store.name + "," + store.email + "," + store.course + "\n", function (err) {
             if (err) throw err;
             console.log('saved!');
